@@ -1,0 +1,171 @@
+@startuml
+title AbstractFactory
+
+interface IFactory {
+    IBonnet createBonnet(int size);
+    IChain createChain();
+    IChassis createChassis();
+    IDoor createDoor();
+    IFrame createFrame();
+    IHandlebars createHandlebars();
+    IMotor createMotor();
+    ISeat createSeat(String color, String measures);
+    ISteeringWheel createSteeringWheel();
+    ITailPipe createTailPipe();
+    IWheel createWheel(int size, int duration);
+}
+
+class MotorcycleFactory {
+    IChain createChain()
+    IChassis createChassis()
+    IHandlebars createHandlebars()
+    IMotor createMotor()
+    ISeat createSeat(String color, String measures)
+    ITailPipe createTailPipe()
+    IWheel createWheel(int size, int duration)
+}
+
+class CarFactory {
+    IBonnet createBonnet(int size)
+    IChassis createChassis()
+    IChassis createChassis()
+    IMotor createMotor()
+    ISeat createSeat(String color, String measures)
+    ISteeringWheel createSteeringWheel()
+    ITailPipe createTailPipe()
+    IWheel createWheel(int size, int duration)
+}
+
+class BikeFactory {
+    IChain createChain()
+    IFrame createFrame()
+    IHandlebars createHandlebars()
+    ISeat createSeat(String color, String measures)
+    IWheel createWheel(int size, int duration)
+}
+
+IFactory <|.. MotorcycleFactory
+IFactory <|.. CarFactory
+IFactory <|.. BikeFactory
+
+interface IBonnet
+interface IChain
+interface IChassis
+interface IDoor
+interface IFrame
+interface IHandlebars
+interface IMotor
+interface ISeat
+interface ISteeringWheel
+interface ITailPipe
+interface IWheel
+
+
+class CarBonnet
+
+class BikeChain
+class MotorcycleChain
+
+class CarChassis
+class MotorcycleChassis
+
+class CarDoor
+
+class BikeFrame
+
+class BikeHandlebars
+class MotorcycleHandlebars
+
+class CarMotor
+class MotorcycleMotor
+
+class BikeSeat
+class CarSeat
+class MotorcycleSeat
+
+class CarSteeringWheel
+
+class CarTailPipe
+class MotorcycleTailPipe
+
+class BikeWheel
+class CarWheel
+class MotorcycleWheel
+
+IBonnet <|.. CarBonnet
+IChain <|.. BikeChain
+IChain <|.. MotorcycleChain
+IChassis <|.. CarChassis
+IChassis <|.. MotorcycleChassis
+IDoor <|.. CarDoor
+IFrame <|.. BikeFrame
+IHandlebars <|.. BikeHandlebars
+IHandlebars <|.. MotorcycleHandlebars
+IMotor <|.. CarMotor
+IMotor <|.. MotorcycleMotor
+ISeat <|.. BikeSeat
+ISeat <|.. CarSeat
+ISeat <|.. MotorcycleSeat
+ISteeringWheel <|.. CarSteeringWheel
+ITailPipe <|.. CarTailPipe
+ITailPipe <|.. MotorcycleTailPipe
+IWheel <|.. BikeWheel
+IWheel <|.. CarWheel
+IWheel <|.. MotorcycleWheel
+
+CarFactory o-- CarBonnet
+CarFactory o-- CarChassis
+CarFactory o-- CarDoor
+CarFactory o-- CarMotor
+CarFactory o-- CarSeat
+CarFactory o-- CarSteeringWheel
+CarFactory o-- CarTailPipe
+CarFactory o-- CarWheel
+
+BikeFactory o-- BikeChain
+BikeFactory o-- BikeFrame
+BikeFactory o-- BikeHandlebars
+BikeFactory o-- BikeSeat
+BikeFactory o-- BikeWheel
+
+MotorcycleFactory o-- MotorcycleChain
+MotorcycleFactory o-- MotorcycleChassis
+MotorcycleFactory o-- MotorcycleHandlebars
+MotorcycleFactory o-- MotorcycleMotor
+MotorcycleFactory o-- MotorcycleSeat
+MotorcycleFactory o-- MotorcycleTailPipe
+MotorcycleFactory o-- MotorcycleWheel
+
+interface IVehicle {
+    string getVehicleInformation()
+}
+
+class Motorcycle {
+    static Motorcycle getMotorcycle(IFactory)
+    string getVehicleInformation()
+}
+
+class Car {
+    static Car getCar(IFactory)
+    string getVehicleInformation()
+}
+
+class Bike {
+    static Bike getBike(IFactory)
+    string getVehicleInformation()
+}
+
+IVehicle <|.. Motorcycle
+IVehicle <|.. Car
+IVehicle <|.. Bike
+
+class Client
+
+Client -- IFactory
+Client -- IVehicle
+
+Bike -- IFactory
+Motorcycle -- IFactory
+Car -- IFactory
+
+@enduml
