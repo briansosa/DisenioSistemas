@@ -114,5 +114,5 @@ Network Trash Folder
 Temporary Items
 .apdisk
 
-/Builder/bin/
-/Builder/obj/
+./src/Builder/bin/
+./src/Builder/obj/
