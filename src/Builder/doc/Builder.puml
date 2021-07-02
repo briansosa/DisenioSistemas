@@ -1,0 +1,100 @@
+@startuml
+title Builder
+
+interface IDiretor {
+    IVehicle Make();
+    void ChangeBuilder(IBuilder builder);
+}
+
+class DeportivoDirector
+class SedanDirector
+class StandardMotoDirector
+class StandardBikeDirector
+
+IDiretor <|.. DeportivoDirector
+IDiretor <|.. SedanDirector
+IDiretor <|.. StandardMotoDirector
+IDiretor <|.. StandardBikeDirector
+
+interface IBuilder {
+    void CreateWheel();
+    void CreateDoor();
+    void CreateBonnet();
+    void CreateChassis();
+    void CreateMotor();
+    void CreateSeat();
+    void CreateSteeringWheel();
+    void CreateTailPipe();
+    void CreateChain();
+    void CreateFrame();
+    void CreateHandlebars();
+    IVehicle GetModel();
+}
+
+class CarAudiBuilder
+class CarFordFocusBuilder
+class MotorcycleZanellaBuilder
+class BikeBMCBuilder
+
+IBuilder <|.. CarAudiBuilder
+IBuilder <|.. CarFordFocusBuilder
+IBuilder <|.. MotorcycleZanellaBuilder
+IBuilder <|.. BikeBMCBuilder
+
+interface IVehicle {
+    String getVehicleInformation();
+    List<IProduct> wheels getter/setter;
+    List<IProduct> doors getter/setter;
+    IProduct bonnet getter/setter;
+    IProduct chassis getter/setter;
+    IProduct motor getter/setter;
+    List<IProduct> seats getter/setter;
+    IProduct steeringWheel getter/setter;
+    IProduct tailPipe getter/setter;
+    IProduct chain getter/setter;
+    IProduct handlebars getter/setter;
+    IProduct frame getter/setter;
+}
+
+class Car
+class Motorcycle
+class Bike
+
+IVehicle <|.. Car
+IVehicle <|.. Motorcycle
+IVehicle <|.. Bike
+
+interface IProduct {
+    String getInformation();
+}
+
+class Bonnet
+class Chain
+class Chassis
+class Door
+class Frame
+class Handlebars
+class Motor
+class Seat
+class SteeringWheel
+class TailPipe
+class Wheel
+
+IProduct <|.. Bonnet
+IProduct <|.. Chain
+IProduct <|.. Chassis
+IProduct <|.. Door
+IProduct <|.. Frame
+IProduct <|.. Handlebars
+IProduct <|.. Motor
+IProduct <|.. Seat
+IProduct <|.. SteeringWheel
+IProduct <|.. TailPipe
+IProduct <|.. Wheel
+
+IDiretor o-- IBuilder
+IBuilder o-- IVehicle
+
+IVehicle o-- IProduct
+
+@enduml
