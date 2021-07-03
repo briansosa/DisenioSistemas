@@ -1,0 +1,58 @@
+@startuml
+
+interface IComponente {
+    void Comprimir()
+}
+
+class Componente {
+    - IStrategy strategy
+    - void Comprimir()
+}
+note right of Componente::Comprimir
+    "..
+    this.strategy.PrepararCompresion();
+    this.strategy.IniciarCompresion();
+    this.strategy.GetEstado();
+    this.strategy.FinalizarCompresion();
+    .."
+end note
+            
+
+IComponente <|.. Componente
+
+interface IStrategy {
+    void PrepararCompresion();
+    void IniciarCompresion();
+    void GetEstado();
+    void FinalizarCompresion();
+}
+
+class TarStrategy{
+    - string data
+    - string estado
+    - string infoExtra
+}
+
+class RarStrategy{
+    - string data
+    - string estado
+    - string promocion
+}
+
+class ZipStrategy{
+    - string data
+    - string estado
+    - int descuento
+}
+
+IStrategy <|.. TarStrategy
+IStrategy <|.. RarStrategy
+IStrategy <|.. ZipStrategy
+
+Componente o-- IStrategy
+
+class Cliente
+
+Cliente --> IComponente
+
+@enduml
