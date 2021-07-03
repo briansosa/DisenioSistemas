@@ -37,7 +37,7 @@ namespace Singleton
             return instance;
         }
 
-        public String ToString(){
+        public override string ToString(){
             return String.Format("" +
             "Nombre: {0}" + Environment.NewLine + 
             "Apellido:{1}" + Environment.NewLine +
